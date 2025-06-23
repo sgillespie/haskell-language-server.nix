@@ -22,8 +22,7 @@ Before getting started, you'll need the following dependencies
 
 To build the hoogle index and launch a local server, run:
 
-    nix develop github:sgillespie/haskell-language-server.nix#ghc912 \
-        --command hoogle server --local --port 8000
+    nix develop github:sgillespie/haskell-language-server.nix -c hoogle server --local
 
 ## Acknowledgements
 
