@@ -1,7 +1,6 @@
 # haskell-language-server.nix
 
-> Improves the developer expereince for Haskell Language Server contributors with a
-> local hoogle server, backed by nix.
+> Improve Haskell Language Server hacking experience with a local Hoogle server.
 
 ## Background
 
@@ -23,7 +22,8 @@ Before getting started, you'll need the following dependencies
 
 To build the hoogle index and launch a local server, run:
 
-    nix develop github:sgillespie/haskell-language-server.nix#ghc912 --command hoogle server --local --port 8000
+    nix develop github:sgillespie/haskell-language-server.nix#ghc912 \
+        --command hoogle server --local --port 8000
 
 ## Acknowledgements
 
@@ -35,6 +35,6 @@ This project is built on the following tools and ecosystems:
 
 ## License
 
-Licensed under Apache 2.0 License, see [LICENSE].
+Licensed under Apache 2.0 License, see [LICENSE](LICENSE).
 
 
