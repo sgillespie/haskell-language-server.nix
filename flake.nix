@@ -3,6 +3,10 @@
     haskellNix.url = "github:input-output-hk/haskell.nix";
     nixpkgs.follows = "haskellNix/nixpkgs-unstable";
     flake-utils.url = "github:numtide/flake-utils";
+    hls = {
+      url = "github:haskell/haskell-language-server/2.11.0.0";
+      flake = false;
+    };
   };
 
   outputs = inputs@{ self, nixpkgs, flake-utils, haskellNix, ... }:
@@ -22,13 +26,7 @@
           };
 
           project = pkgs.haskell-nix.cabalProject' ({ config, ... }: {
-            src = pkgs.fetchFromGitHub {
-              owner = "haskell";
-              repo = "haskell-language-server";
-              rev = "0a9b1cb3ed772e52904e6b5ed6e6f2b2134dfb03";
-              sha256 = "sha256-NPOfwxpMFyqXQwpjLQCC4dsyB7z7tVeMRdwpBTb8aLo=";
-            };
-
+            src = inputs.hls;
             compiler-nix-name = lib.mkDefault defaultCompiler;
 
             flake.variants = lib.genAttrs compilers (compiler: {
