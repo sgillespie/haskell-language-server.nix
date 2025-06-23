@@ -20,9 +20,27 @@ Before getting started, you'll need the following dependencies
 
 ## Usage
 
-To build the hoogle index and launch a local server, run:
+To launch a local Hoogle server, run:
 
     nix develop github:sgillespie/haskell-language-server.nix -c hoogle server --local
+
+By default, this will build Hoogle instance for all of Haskell Language Server's
+dependencies at the latest stable version. To use your local HLS checkout, run
+
+    nix develop \
+        github:sgillespie/haskell-language-server.nix 
+        --override-input hls ./ \
+        -c hoogle server --local
+
+You can also use this as a drop-in replacement for HLS's `flake.nix`:
+
+    nix develop \
+        github:sgillespie/haskell-language-server.nix \
+        --override-input hls ./ 
+
+To use this with direnv:
+
+    echo "use flake github:sgillespie/haskell-language-server.nix --override-input hls ./" > .envrc
 
 ## Acknowledgements
 
