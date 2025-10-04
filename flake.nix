@@ -4,7 +4,7 @@
     nixpkgs.follows = "haskellNix/nixpkgs-unstable";
     flake-utils.url = "github:numtide/flake-utils";
     hls = {
-      url = "github:haskell/haskell-language-server/2.11.0.0";
+      url = "github:haskell/haskell-language-server/2.12.0.0";
       flake = false;
     };
   };
