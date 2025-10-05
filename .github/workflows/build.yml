@@ -1,0 +1,37 @@
+name: Nix Build
+
+on:
+  push: {}
+  workflow_dispatch: {}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+
+      matrix:
+        compiler:
+          - ghc96
+          - ghc98
+          - ghc910
+          - ghc912
+
+        platform:
+          - x86_64-linux
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Nix
+        uses: cachix/install-nix-action@v20
+        with:
+          extra_nix_config: |
+            accept-flake-config = true
+            extra-substituters = https://nix-cache.mistersg.net/default 
+            extra-trusted-public-keys = default:jiKiJGm5b32PavPS6lLzm4kQpJS/HS1JLi1ybq9kL/0=
+
+      - name: Build dev shell ${{ matrix.compiler }}
+        run: |
+          nix build .#devShells.${{ matrix.platform }}.${{ matrix.compiler }}
